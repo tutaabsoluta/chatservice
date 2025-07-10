@@ -15,18 +15,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class MessageEntity {
 
-    public enum Role {
-        USER,
-        ASSISTANT
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
     @Column(nullable = true)
     private String prompt;
@@ -62,13 +55,8 @@ public class MessageEntity {
     @Column(nullable = true)
     private Integer completionTokens;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "chat_session_id", nullable = false)
-    private ChatSessionEntity chatSession;
 
-    public MessageEntity(ChatSessionEntity chatSession, Role role, String prompt, String response) {
-        this.chatSession = chatSession;
-        this.role = role;
+    public MessageEntity(String prompt, String response) {
         this.prompt = prompt;
         this.response = response;
     }
