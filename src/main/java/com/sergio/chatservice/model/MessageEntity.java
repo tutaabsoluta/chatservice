@@ -20,12 +20,8 @@ public class MessageEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-    @Column(nullable = true)
-    private String prompt;
-
     @Column(nullable = false)
-    private String response;
+    private String prompt;
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
@@ -41,9 +37,6 @@ public class MessageEntity {
     private Float temperature;
 
     @Column(nullable = true)
-    private String userAgent;
-
-    @Column(nullable = true)
     private String modelUsed;
 
     @Column(nullable = true)
@@ -56,8 +49,7 @@ public class MessageEntity {
     private Integer completionTokens;
 
 
-    public MessageEntity(String prompt, String response) {
+    public MessageEntity(String prompt) {
         this.prompt = prompt;
-        this.response = response;
     }
 }
