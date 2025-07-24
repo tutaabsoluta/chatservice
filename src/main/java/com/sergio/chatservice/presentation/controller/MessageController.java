@@ -1,5 +1,6 @@
 package com.sergio.chatservice.presentation.controller;
 
+import com.sergio.chatservice.application.mapper.MessageMapper;
 import com.sergio.chatservice.application.usecase.MessageUseCase;
 import com.sergio.chatservice.presentation.dto.CreateMessageDTO;
 import com.sergio.chatservice.domain.model.MessageEntity;
@@ -45,7 +46,7 @@ public class MessageController {
 
     @PostMapping
     public ResponseEntity<MessageEntity> saveMessage(@RequestBody @Valid CreateMessageDTO dto) {
-        MessageEntity message = new MessageEntity();
+        MessageEntity message = MessageMapper.toEntity(dto);
         message.setPrompt(dto.getPrompt());
         return ResponseEntity.ok( messageUseCase.saveMessage( message ) );
     }
