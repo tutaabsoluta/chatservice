@@ -1,28 +1,28 @@
-package com.sergio.chatservice.controller;
+package com.sergio.chatservice.presentation.controller;
 
-import com.sergio.chatservice.dto.CreateMessageDTO;
-import com.sergio.chatservice.model.MessageEntity;
-import com.sergio.chatservice.service.MessageService;
+import com.sergio.chatservice.application.usecase.MessageUseCase;
+import com.sergio.chatservice.presentation.dto.CreateMessageDTO;
+import com.sergio.chatservice.domain.model.MessageEntity;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/message")
 public class MessageController {
 
-    private final MessageService messageService;
-    public MessageController(MessageService messageService) {
-        this.messageService = messageService;
+    private final MessageUseCase messageUseCase;
+    public MessageController(MessageUseCase messageUseCase) {
+        this.messageUseCase = messageUseCase;
     }
 
     @GetMapping
     public ResponseEntity<?> findMessages() {
-        List<MessageEntity> messages = messageService.findMessages();
+        List<MessageEntity> messages = messageUseCase.findMessages();
         if (messages.isEmpty()) {
             return ResponseEntity.ok().body(
                     Map.of("message", "There is no messages")
@@ -34,7 +34,7 @@ public class MessageController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getNoteById(@PathVariable Long id) {
-        return messageService.findMessageById(id)
+        return messageUseCase.findMessageById(id)
                 .<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElseGet(() ->
                         ResponseEntity.status(404).body(
@@ -47,6 +47,6 @@ public class MessageController {
     public ResponseEntity<MessageEntity> saveMessage(@RequestBody @Valid CreateMessageDTO dto) {
         MessageEntity message = new MessageEntity();
         message.setPrompt(dto.getPrompt());
-        return ResponseEntity.ok( messageService.saveMessage( message ) );
+        return ResponseEntity.ok( messageUseCase.saveMessage( message ) );
     }
 }

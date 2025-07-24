@@ -1,4 +1,4 @@
-package com.sergio.chatservice.dto;
+package com.sergio.chatservice.presentation.dto;
 
 
 import jakarta.validation.constraints.NotBlank;

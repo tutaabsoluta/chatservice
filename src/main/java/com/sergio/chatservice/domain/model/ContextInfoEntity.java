@@ -1,4 +1,4 @@
-package com.sergio.chatservice.model;
+package com.sergio.chatservice.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

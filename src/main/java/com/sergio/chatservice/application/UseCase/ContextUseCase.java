@@ -1,19 +1,18 @@
-package com.sergio.chatservice.service;
+package com.sergio.chatservice.application.usecase;
 
-import com.sergio.chatservice.model.ContextInfoEntity;
-import com.sergio.chatservice.repository.ContextInfoRepository;
-import org.springframework.stereotype.Service;
+import com.sergio.chatservice.domain.model.ContextInfoEntity;
+import com.sergio.chatservice.domain.repository.ContextInfoRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ContextInfoService {
+public class ContextUseCase {
+
     private final ContextInfoRepository contextInfoRepository;
-    public ContextInfoService(ContextInfoRepository contextInfoRepository) {
+
+    public ContextUseCase(ContextInfoRepository contextInfoRepository) {
         this.contextInfoRepository = contextInfoRepository;
     }
-
     public List<ContextInfoEntity> findContextInfo() {
         return contextInfoRepository.findAll();
     }
@@ -26,3 +25,8 @@ public class ContextInfoService {
         return contextInfoRepository.save(contextInfo);
     }
 }
+
+
+
+
+
