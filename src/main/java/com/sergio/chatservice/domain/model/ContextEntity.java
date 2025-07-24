@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ContextInfoEntity {
+public class ContextEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,7 +24,7 @@ public class ContextInfoEntity {
     @Column(nullable = false)
     private String answer;
 
-    public ContextInfoEntity(String category, String exampleQuestion, String answer) {
+    public ContextEntity(String category, String exampleQuestion, String answer) {
         this.category = category;
         this.exampleQuestion = exampleQuestion;
         this.answer = answer;

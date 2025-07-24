@@ -2,7 +2,7 @@ package com.sergio.chatservice.infrastructure.config;
 
 import com.sergio.chatservice.application.usecase.ContextUseCase;
 import com.sergio.chatservice.application.usecase.MessageUseCase;
-import com.sergio.chatservice.domain.repository.ContextInfoRepository;
+import com.sergio.chatservice.domain.repository.ContextRepository;
 import com.sergio.chatservice.domain.repository.MessageRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class UseCaseConfig {
     }
 
     @Bean
-    public ContextUseCase contextUseCase(ContextInfoRepository contextInfoRepository) {
+    public ContextUseCase contextUseCase(ContextRepository contextInfoRepository) {
         return new ContextUseCase(contextInfoRepository);
     }
 }

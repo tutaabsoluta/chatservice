@@ -26,7 +26,7 @@ public class MessageController {
         List<MessageEntity> messages = messageUseCase.findMessages();
         if (messages.isEmpty()) {
             return ResponseEntity.ok().body(
-                    Map.of("message", "There is no messages")
+                    Map.of("message", "There are no messages")
             );
         }
 
